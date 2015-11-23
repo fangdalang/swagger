@@ -1,0 +1,130 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Documentation for Secure Pay and PAM UI",
+    "version" : "v1",
+    "title" : "Swagger for Secure Pay and PAM UI"
+  },
+  "tags" : [ {
+    "name" : "paymentbackend",
+    "description" : "Secure Pay UI: Payment Backend API"
+  }, {
+    "name" : "cancel",
+    "description" : "Secure Pay UI: Cancel"
+  }, {
+    "name" : "purchase",
+    "description" : "Secure Pay UI: Purchase"
+  }, {
+    "name" : "pmm",
+    "description" : "Secure Pay UI: PaymentMethod"
+  } ],
+  "paths" : {
+    "/cancel" : {
+      "post" : {
+        "tags" : [ "cancel" ],
+        "summary" : "Cancel order",
+        "description" : "Sample headers: Content-Type: application/json\nX-HP-Client-Id: gcc_browser_client\nAuthorization: bearer 0/GlBG9SpDSQSQRvUqQ0kE3w;\nSample payload: {\"redirect\": \"\",\n \"locale\": \"en_US\",\n \"idProvider\": \"phoenix\",\n \"authOwner\": \"\",\n \"authURL\":\"\",\n \"orderId\" : \"dev-101-10000012-100003\",\n \"catalogId\" : \"7d047abcc052475db3a8e4368b104d10\",\n \"productId\" : \"ec307666-ebe6-4b33-8e22-b7e9da1904d5\",\n \"sku\" : \"subscription_0.99_USD_US_N_1_years_1_months_30_minutes\"\n}",
+        "operationId" : "cancelOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/paymentbackend/createorder" : {
+      "post" : {
+        "tags" : [ "paymentbackend" ],
+        "summary" : "Create Order",
+        "description" : "Create Order Notes",
+        "operationId" : "createorder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "/pmm/init" : {
+      "get" : {
+        "tags" : [ "pmm" ],
+        "summary" : "Extract token",
+        "description" : "Extract token",
+        "operationId" : "extractToken",
+        "parameters" : [ {
+          "name" : "code",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "state",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "error",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/purchase" : {
+      "post" : {
+        "tags" : [ "purchase" ],
+        "summary" : "Initiate a purchase",
+        "description" : "Sample headers: Content-Type: application/json\nX-HP-Client-Id: gcc_browser_client\nAuthorization: bearer 0/GlBG9SpDSQSQRvUqQ0kE3w;\nSample payload: {\"currency\":\"USD\",\n \"idProvider\":\"phoenix\",\n \"authOwner\":\"\",\n \"authURL\":\"\",\n \"redirect\": \"\",\n \"refreshTimer\": 3000,\n \"locale\": \"en_US\",\n \"products\": [{\n   \"type\": \"ONETIME\",\n   \"productId\": \"126-126-126-126-126-onetime\",\n   \"catalogId\": \"952e06c1-14e3-11e3-bd11-22000a93d5cc\",\n   \"sku\": \"OTPP377845\",\n   \"version\": \"1.0.0\",\n   \"quantity\": \"1\",\n   \"price\": \"4.99\"\n }]\n}",
+        "operationId" : "purchase",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
